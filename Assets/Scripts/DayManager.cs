@@ -1,16 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+// this script will be split up as necessary but for now it'll just be one
 public class DayManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<Request> currentRequests = new();
 }
