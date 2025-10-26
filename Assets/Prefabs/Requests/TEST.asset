@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f75fdcf993de8f646b870f813c215902, type: 3}
+  m_Name: TEST
+  m_EditorClassIdentifier: 
+  resourcesRequested:
+  - resource: {fileID: 11400000, guid: 3eaecc97c209b062cb1ceb4e91c0a726, type: 2}
+    amount: 2
+  - resource: {fileID: 11400000, guid: bf2177cc10f416a19964018422e3a7d0, type: 2}
+    amount: 4
+  - resource: {fileID: 11400000, guid: 396c5c84d794026108e61194ac8796a6, type: 2}
+    amount: 12
+  requestName: I dunno man
+  requestDescription: what the hell!!!!

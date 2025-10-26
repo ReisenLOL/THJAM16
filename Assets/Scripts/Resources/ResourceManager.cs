@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ public class ResourceManager : MonoBehaviour
     #endregion
     
     Dictionary<Resource, int> currentResources = new();
+    public ResourceUIList resourceUI;
+    public Resource resourceTest;
 
     public bool AddResource(Resource resource, int amount)
     {
@@ -30,6 +33,7 @@ public class ResourceManager : MonoBehaviour
         {
             resourceValue += amount;
             currentResources[resource] = resourceValue;
+            resourceUI.UpdateResourceUI(resource);
             return true;
         }
         return false;
@@ -45,6 +49,7 @@ public class ResourceManager : MonoBehaviour
         {
             resourceValue -= amount;
             currentResources[resource] = resourceValue;
+            resourceUI.UpdateResourceUI(resource);
             return true;
         }
         return false;
@@ -56,5 +61,10 @@ public class ResourceManager : MonoBehaviour
             return 0;
         }
         return currentResources[resource];
+    }
+
+    private void Start()
+    {
+        AddResource(resourceTest, 90);
     }
 }

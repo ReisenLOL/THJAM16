@@ -1,0 +1,9 @@
+sylvia yapping place (aka my notes. maybe.)
+uhhh i have like systems done right now
+i have no idea about ui so fuck it we ball
+resource list, requests list. requests list has icons (ofcourse it does)
+but do we make it so like. the requests and resources are in uhhhh tabs?
+cuz they're both scrollable and big uhhh i dunno :P
+anyways when you click on a location, camera zooms in, shows the request, accept or cancel, you know the deal.
+i think it should have a cool list of materials needed aswell
+what if i made the list for resources in the request panel on the side instead of integrated... yeah that's probably cool
