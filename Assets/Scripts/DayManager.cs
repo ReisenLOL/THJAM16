@@ -5,4 +5,10 @@ using UnityEngine;
 public class DayManager : MonoBehaviour
 {
     public List<Request> currentRequests = new();
+    public int currentDay;
+    public enum Phase {Requesting, Gathering, Crafting}
+
+    public Phase currentPhase;
+    public int maxDolls;
+    public int currentDolls;
 }

@@ -5,4 +5,5 @@ public class Resource : ScriptableObject
     public string resourceName;
     public Sprite icon;
     public float tier;
+    public Color color; //this is a placeholder for the icon
 }

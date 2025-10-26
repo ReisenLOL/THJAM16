@@ -3,6 +3,19 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
+    #region Statication
+    public static ResourceManager instance;
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
+    #endregion
+    
     Dictionary<Resource, int> currentResources = new();
 
     public bool AddResource(Resource resource, int amount)
