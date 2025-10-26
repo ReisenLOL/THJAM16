@@ -23,6 +23,7 @@ public class ResourceUIList : MonoBehaviour
     {
         ResourceUI newResourceUI = Instantiate(templateUI, grid);
         newResourceUI.gameObject.SetActive(true);
+        newResourceUI.nameLabel.text = resource.resourceName;
         newResourceUI.icon.color = resource.color;
         newResourceUI.thisResource = resource;
         return newResourceUI;

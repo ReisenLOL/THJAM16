@@ -19,5 +19,5 @@ MonoBehaviour:
     amount: 4
   - resource: {fileID: 11400000, guid: 396c5c84d794026108e61194ac8796a6, type: 2}
     amount: 12
-  requestName: I dunno man
-  requestDescription: what the hell!!!!
+  requestName: Test request
+  requestDescription: i dunno man!

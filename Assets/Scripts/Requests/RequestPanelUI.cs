@@ -21,6 +21,7 @@ public class RequestPanelUI : MonoBehaviour
     public Transform resourceList;
     public TextMeshProUGUI nameLabel;
     public TextMeshProUGUI descriptionLabel;
+    public Button acceptButton;
 
     public void ShowRequest(Request requestToShow)
     {
@@ -39,8 +40,15 @@ public class RequestPanelUI : MonoBehaviour
             newResourceIcon.transform.Find("Icon").GetComponent<Image>().color = resource.resource.color; 
             newResourceIcon.GetComponentInChildren<TextMeshProUGUI>().text = resource.amount.ToString();
         }
+        acceptButton.onClick.RemoveAllListeners();
+        acceptButton.onClick.AddListener(() => AcceptRequest(requestToShow));
     }
 
+    public void AcceptRequest(Request request)
+    {
+        requestPanel.SetActive(false);
+        DayManager.instance.AcceptRequest(request);
+    }
     public void HideRequest()
     {
         requestPanel.SetActive(false);
