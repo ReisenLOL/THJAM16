@@ -11,6 +11,8 @@ public class GatherLocation : MonoBehaviour
         public Resource resource;
         public int amount;
     }
+
+    public string locationName;
     public Yield[] standardYields;
     public Yield[] bonusYields;
     public float bonusChance;
@@ -41,6 +43,6 @@ public class GatherLocation : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Gather();
+        GatherLocationUI.instance.ShowGatherLocation(this);
     }
 }

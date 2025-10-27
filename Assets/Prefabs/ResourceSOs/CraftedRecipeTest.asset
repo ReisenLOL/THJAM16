@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5ff8dcd5e261dc6b90ecab14b9209f, type: 3}
+  m_Name: CraftedRecipeTest
+  m_EditorClassIdentifier: 
+  resourceName: Testtest
+  icon: {fileID: 0}
+  tier: 1
+  color: {r: 1, g: 0.9358079, b: 0.3726415, a: 1}
+  recipe:
+  - resource: {fileID: 11400000, guid: 3eaecc97c209b062cb1ceb4e91c0a726, type: 2}
+    amount: 4
+  - resource: {fileID: 11400000, guid: bf2177cc10f416a19964018422e3a7d0, type: 2}
+    amount: 2

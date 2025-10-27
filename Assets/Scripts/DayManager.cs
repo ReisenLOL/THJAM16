@@ -36,6 +36,7 @@ public class DayManager : MonoBehaviour
     public TextMeshProUGUI dollAmountText;
     public GameObject requestList;
     public GameObject resourceList;
+    public GameObject craftingList;
 
     public void NextPhase()
     {
@@ -82,10 +83,19 @@ public class DayManager : MonoBehaviour
     {
         resourceList.SetActive(true);
         requestList.SetActive(false);
+        craftingList.SetActive(false);
     }
-    public void SetRequestUI()
+    public void SetRequestUI() //this is stupid to have these be their own functions there's gotta be a better way - sylvia
     {
         resourceList.SetActive(false);
         requestList.SetActive(true);
+        craftingList.SetActive(false);
+    }
+
+    public void SetCraftingUI()
+    {
+        resourceList.SetActive(false);
+        requestList.SetActive(false);
+        craftingList.SetActive(true);
     }
 }

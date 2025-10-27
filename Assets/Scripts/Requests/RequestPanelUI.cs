@@ -47,6 +47,7 @@ public class RequestPanelUI : MonoBehaviour
     public void AcceptRequest(Request request)
     {
         requestPanel.SetActive(false);
+        DayManager.instance.SetRequestUI();
         DayManager.instance.AcceptRequest(request);
     }
     public void HideRequest()
