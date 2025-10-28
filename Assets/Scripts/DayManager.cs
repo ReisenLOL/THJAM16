@@ -140,6 +140,7 @@ public class DayManager : MonoBehaviour
                 currentRequests.Remove(request); //five million for loops
             }
         }
+        requestUIList.RemoveIcon(requestToFulfill);
     }
 
     public void FailRequest(RequestCounter requestToFail)
