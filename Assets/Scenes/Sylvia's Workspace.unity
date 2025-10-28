@@ -600,7 +600,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1012253345}
   m_Direction: 2
   m_Value: 1.0000013
-  m_Size: 0.4
+  m_Size: 0.40000004
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -673,7 +673,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab919f2b2bddfa28cb12f2cc9ca49be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationName: 
+  dayUnlocked: 0
   request: {fileID: 11400000, guid: e54f654535477711a8302f4dfe86963a, type: 2}
+  requestInProgress: 0
 --- !u!61 &119952322
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4654,11 +4657,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: 
+  dayUnlocked: 0
   standardYields:
   - resource: {fileID: 11400000, guid: 3eaecc97c209b062cb1ceb4e91c0a726, type: 2}
     amount: 2
   bonusYields: []
   bonusChance: 0
+  eventChance: 0
 --- !u!61 &1394254836
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6717,11 +6722,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: 
+  dayUnlocked: 0
   standardYields:
   - resource: {fileID: 11400000, guid: bf2177cc10f416a19964018422e3a7d0, type: 2}
     amount: 2
   bonusYields: []
   bonusChance: 0
+  eventChance: 0
 --- !u!61 &1743873603
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8356,8 +8363,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1782978188}
   - {fileID: 482930532}
+  - {fileID: 1782978188}
   - {fileID: 815278770}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8496,6 +8503,7 @@ MonoBehaviour:
   nameLabel: {fileID: 1651131151}
   descriptionLabel: {fileID: 1021770996}
   acceptButton: {fileID: 1697318299}
+  buttonText: {fileID: 1578477716}
 --- !u!4 &1923157536
 Transform:
   m_ObjectHideFlags: 0
@@ -8555,19 +8563,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb17c60c85520f09396d641b81054f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRequests: []
   currentDay: 1
   currentPhase: 0
   maxDolls: 10
   currentDolls: 10
-  requestLocations: {fileID: 234998498}
-  gatherLocations: {fileID: 1012488275}
+  allLocations: []
+  requestLocationFolder: {fileID: 0}
+  gatherLocationFolder: {fileID: 0}
   requestUIList: {fileID: 1549218484}
   phaseText: {fileID: 1512622882}
   dollAmountText: {fileID: 45767875}
   requestList: {fileID: 1549218479}
   resourceList: {fileID: 1221828078}
   craftingList: {fileID: 2045564095}
+  UIToHide:
+  - {fileID: 1782978187}
+  - {fileID: 815278769}
 --- !u!1 &1971918085
 GameObject:
   m_ObjectHideFlags: 0
