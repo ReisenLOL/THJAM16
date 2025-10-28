@@ -15,6 +15,7 @@ public class RequestUIList : MonoBehaviour
         newRequestIcon.gameObject.SetActive(true);
         newRequestIcon.gameObject.SetActive(true);
         newRequestIcon.GetComponentInChildren<TextMeshProUGUI>().text = request.requestName;
+        currentRequestList[request] = newRequestIcon;
         foreach (Request.ResourceQuery resource in request.resourcesRequested)
         {
             GameObject newResourceUI =

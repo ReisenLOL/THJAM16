@@ -28,10 +28,10 @@ public class GatherLocation : Location
 
             if (bonusYields.Length > 0)
             {
-                float random = Random.Range(0f, 100f);
-                if (random <= bonusChance)
+                foreach (Yield yield in bonusYields)
                 {
-                    foreach (Yield yield in bonusYields)
+                    float random = Random.Range(0f, 100f);
+                    if (random < bonusChance)
                     {
                         ResourceManager.instance.AddResource(yield.resource, yield.amount);
                     }

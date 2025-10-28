@@ -31,6 +31,10 @@ public class GatherLocationUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        foreach (Transform child in bonusResourceList)
+        {
+            Destroy(child.gameObject);
+        }
         foreach (GatherLocation.Yield resource in locationToShow.standardYields)
         {
             YieldIcon newResourceIcon = Instantiate(templateResourceIcon, resourceList);
@@ -46,7 +50,7 @@ public class GatherLocationUI : MonoBehaviour
             bonusYieldPanel.SetActive(true);
             foreach (GatherLocation.Yield resource in locationToShow.bonusYields)
             {
-                YieldIcon newResourceIcon = Instantiate(templateResourceIcon, resourceList);
+                YieldIcon newResourceIcon = Instantiate(templateResourceIcon, bonusResourceList);
                 newResourceIcon.gameObject.SetActive(true);
                 newResourceIcon.icon.color = resource.resource.color;
                 newResourceIcon.nameLabel.text = resource.resource.resourceName;

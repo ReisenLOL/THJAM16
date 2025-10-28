@@ -21,3 +21,4 @@ MonoBehaviour:
     amount: 12
   requestName: Test request
   requestDescription: i dunno man!
+  dayLimit: 3

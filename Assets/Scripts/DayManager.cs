@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -19,6 +20,7 @@ public class DayManager : MonoBehaviour
     }
     #endregion
 
+    [Serializable]
     public class RequestCounter
     {
         public Request request;
@@ -87,7 +89,7 @@ public class DayManager : MonoBehaviour
     {
         currentDay++;
         currentDolls = maxDolls;
-        foreach (RequestCounter request in  currentRequests)
+        foreach (RequestCounter request in currentRequests.ToArray())
         {
             request.currentDay++;
             if (request.currentDay >= request.request.dayLimit)
@@ -142,6 +144,7 @@ public class DayManager : MonoBehaviour
 
     public void FailRequest(RequestCounter requestToFail)
     {
+        requestUIList.RemoveIcon(requestToFail.request);
         requestToFail.location.requestInProgress = false;
         currentRequests.Remove(requestToFail);
         
