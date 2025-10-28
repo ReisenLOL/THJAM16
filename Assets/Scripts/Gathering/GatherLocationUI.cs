@@ -17,11 +17,12 @@ public class GatherLocationUI : MonoBehaviour
     }
     #endregion
     public GameObject gatherPanel;
-    public GameObject templateResourceIcon;
+    public YieldIcon templateResourceIcon;
     public Transform resourceList;
     public TextMeshProUGUI nameLabel;
     public Button gatherButton;
-
+    public GameObject bonusYieldPanel;
+    public Transform bonusResourceList;
     public void ShowGatherLocation(GatherLocation locationToShow)
     {
         gatherPanel.SetActive(true);
@@ -32,16 +33,30 @@ public class GatherLocationUI : MonoBehaviour
         }
         foreach (GatherLocation.Yield resource in locationToShow.standardYields)
         {
-            //this is really bad but like i'll make a script later for the resource ui to cache it so i don't have to find all these every single time
-            GameObject newResourceIcon = Instantiate(templateResourceIcon, resourceList);
-            newResourceIcon.SetActive(true);
-            newResourceIcon.transform.Find("Icon").GetComponent<Image>().color = resource.resource.color;
-            newResourceIcon.transform.Find("NameLabel").GetComponent<TextMeshProUGUI>().text =
-                resource.resource.resourceName;
-            newResourceIcon.transform.Find("AmountLabel").GetComponent<TextMeshProUGUI>().text = resource.amount.ToString();
+            YieldIcon newResourceIcon = Instantiate(templateResourceIcon, resourceList);
+            newResourceIcon.gameObject.SetActive(true);
+            newResourceIcon.icon.color = resource.resource.color;
+            newResourceIcon.nameLabel.text = resource.resource.resourceName;
+            newResourceIcon.amountLabel.text = resource.amount.ToString();
         }
         gatherButton.onClick.RemoveAllListeners();
         gatherButton.onClick.AddListener(() => Gather(locationToShow));
+        if (locationToShow.bonusYields.Length > 0)
+        {
+            bonusYieldPanel.SetActive(true);
+            foreach (GatherLocation.Yield resource in locationToShow.bonusYields)
+            {
+                YieldIcon newResourceIcon = Instantiate(templateResourceIcon, resourceList);
+                newResourceIcon.gameObject.SetActive(true);
+                newResourceIcon.icon.color = resource.resource.color;
+                newResourceIcon.nameLabel.text = resource.resource.resourceName;
+                newResourceIcon.amountLabel.text = resource.amount.ToString();
+            }
+        }
+        else
+        {
+            bonusYieldPanel.SetActive(false);
+        }
     }
 
     public void Gather(GatherLocation locationToShow)
