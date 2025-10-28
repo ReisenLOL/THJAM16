@@ -18,17 +18,25 @@ public class DayManager : MonoBehaviour
         instance = this;
     }
     #endregion
-    
-    public List<Request> currentRequests = new();
+
+    public class RequestCounter
+    {
+        public Request request;
+        public RequestLocation location;
+        public int currentDay = 0;
+    }
+    public List<RequestCounter> currentRequests = new();
+    [Header("Game State")]
     public int currentDay;
     public enum Phase {Requesting, Gathering, Crafting}
-
     public Phase currentPhase;
+    [Header("Dolls")]
     public int maxDolls;
     public int currentDolls;
-
-    public GameObject requestLocations;
-    public GameObject gatherLocations;
+    [Header("Locations")] 
+    public Location[] allLocations;
+    public GameObject requestLocationFolder;
+    public GameObject gatherLocationFolder;
     
     [Header("UI")]
     public RequestUIList requestUIList;
@@ -37,9 +45,14 @@ public class DayManager : MonoBehaviour
     public GameObject requestList;
     public GameObject resourceList;
     public GameObject craftingList;
+    public GameObject[] UIToHide;
 
     public void NextPhase()
     {
+        foreach (GameObject ui in UIToHide)
+        {
+            ui.SetActive(false);
+        }
         currentPhase++;
         if (currentPhase > Phase.Crafting)
         {
@@ -50,14 +63,20 @@ public class DayManager : MonoBehaviour
         {
             case Phase.Requesting:
             {
-                requestLocations.SetActive(true);
-                gatherLocations.SetActive(false);
+                requestLocationFolder.SetActive(true);
+                gatherLocationFolder.SetActive(false);
                 break;
             }
             case Phase.Gathering:
             {
-                requestLocations.SetActive(false);
-                gatherLocations.SetActive(true);
+                requestLocationFolder.SetActive(false);
+                gatherLocationFolder.SetActive(true);
+                break;
+            }
+            case Phase.Crafting:
+            {
+                requestLocationFolder.SetActive(false);
+                gatherLocationFolder.SetActive(false);
                 break;
             }
         }
@@ -68,17 +87,65 @@ public class DayManager : MonoBehaviour
     {
         currentDay++;
         currentDolls = maxDolls;
+        foreach (RequestCounter request in  currentRequests)
+        {
+            request.currentDay++;
+            if (request.currentDay >= request.request.dayLimit)
+            {
+                FailRequest(request);
+            }
+        }
+
+        foreach (Location location in allLocations)
+        {
+            if (currentDay > location.dayUnlocked)
+            {
+                location.gameObject.SetActive(true);
+            }
+        }
     }
     public void UpdateDollsUI()
     {
         dollAmountText.text = $"Dolls: {currentDolls}/{maxDolls}";
     }
-    public void AcceptRequest(Request request)
+    public void AcceptRequest(Request request, RequestLocation location)
     {
-        currentRequests.Add(request);
+        RequestCounter newRequest = new RequestCounter();
+        newRequest.request = request;
+        newRequest.location = location;
+        currentRequests.Add(newRequest);
         requestUIList.CreateNewUI(request);
     }
+    public void FulfillRequest(Request requestToFulfill)
+    {
+        foreach (Request.ResourceQuery query in requestToFulfill.resourcesRequested)
+        {
+            if (ResourceManager.instance.CheckResourceValue(query.resource) < query.amount)
+            {
+                return;
+            }
+        }
+        foreach (Request.ResourceQuery query in requestToFulfill.resourcesRequested)
+        {
+            ResourceManager.instance.SubtractResource(query.resource, query.amount);
+        }
 
+        foreach (RequestCounter request in currentRequests.ToArray())
+        {
+            if (request.request == requestToFulfill)
+            {
+                request.location.requestInProgress = false;
+                currentRequests.Remove(request); //five million for loops
+            }
+        }
+    }
+
+    public void FailRequest(RequestCounter requestToFail)
+    {
+        requestToFail.location.requestInProgress = false;
+        currentRequests.Remove(requestToFail);
+        
+    }
     public void SetResourceUI()
     {
         resourceList.SetActive(true);
@@ -97,5 +164,11 @@ public class DayManager : MonoBehaviour
         resourceList.SetActive(false);
         requestList.SetActive(false);
         craftingList.SetActive(true);
+    }
+    public void HideAllUI()
+    {
+        resourceList.SetActive(false);
+        requestList.SetActive(false);
+        craftingList.SetActive(false);
     }
 }

@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GatherLocation : MonoBehaviour
+public class GatherLocation : Location
 {
     [Serializable]
     public class Yield
@@ -11,11 +11,10 @@ public class GatherLocation : MonoBehaviour
         public Resource resource;
         public int amount;
     }
-
-    public string locationName;
     public Yield[] standardYields;
     public Yield[] bonusYields;
     public float bonusChance;
+    public float eventChance;
     public void Gather()
     {
         if (DayManager.instance.currentDolls > 0)
@@ -37,6 +36,11 @@ public class GatherLocation : MonoBehaviour
                         ResourceManager.instance.AddResource(yield.resource, yield.amount);
                     }
                 }
+            }
+            float randomEvent = Random.Range(0f, 100f);
+            if (randomEvent < eventChance)
+            {
+                //event happens here?
             }
         }
     }

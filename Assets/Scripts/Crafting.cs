@@ -29,7 +29,6 @@ public class Crafting : MonoBehaviour
         {
             ResourceManager.instance.SubtractResource(ingredient.resource, ingredient.amount);
         }
-
         ResourceManager.instance.AddResource(resourceToCraft, 1);
     }
 

@@ -13,4 +13,5 @@ public class Request : ScriptableObject
     public ResourceQuery[] resourcesRequested;
     public string requestName;
     public string requestDescription;
+    public int dayLimit;
 }

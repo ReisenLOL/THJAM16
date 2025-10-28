@@ -8,7 +8,6 @@ public class Resource : ScriptableObject
     public int tier; //probably replaced with just a bool for advanced.
     public Color color; //this is a placeholder for the icon
     public ResourceAmount[] recipe; //you can leave blank if none
-
     [Serializable]
     public class ResourceAmount
     {
